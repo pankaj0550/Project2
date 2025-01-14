@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inventory Management System</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-image: url('https://img.freepik.com/free-vector/conveyor-belt-warehouse-concept-illustration_114360-15026.jpg'); /* Path to the image in static folder */
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+
+        
+        h1 {
+            color: #4b0082; /* Purple color for the header */
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Button container styling */
+        .button-container {
+            margin-top: 20px;
+        }
+
+        /* Button styling */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: 2px solid #4b0082; /* Purple border */
+            color: #4b0082; /* Purple text color */
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Button hover effect */
+        .button:hover {
+            background-color: #4b0082;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>Inventory Management System</h1>
+
+<div class="button-container">
+    <a th:href="@{/products}" class="button">View Product</a>
+    <a th:href="@{/suppliers}" class="button">View Supplier</a>
+</div>
+</body>
+</html>

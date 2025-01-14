@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Supplier List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      text-align: center;
+      margin-top: 50px;
+      position: relative;
+      min-height: 100vh;
+      padding-bottom: 60px; /* Ensure space for the button */
+    }
+    h1 {
+      color: #4b0082;
+    }
+    a {
+      color: #4b0082;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #4b0082;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    .actions a {
+      color: mediumslateblue;
+      margin-right: 10px;
+    }
+    .actions a:hover {
+      color: #4b0082;
+    }
+    .bottom-right-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+    }
+    .bottom-right-button button {
+      padding: 10px 20px;
+      border: 2px solid #4b0082;
+      color: #4b0082;
+      background-color: transparent;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    .bottom-right-button button:hover {
+      background-color: #4b0082;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<h1>Supplier List</h1>
+<a th:href="@{/suppliers/add}">Add New Supplier</a>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Contact Number</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="supplier : ${suppliers}">
+    <td th:text="${supplier.name}"></td>
+    <td th:text="${supplier.contactNumber}"></td>
+    <td th:text="${supplier.email}"></td>
+    <td th:text="${supplier.address}"></td>
+    <td class="actions">
+      <a th:href="@{/suppliers/edit/{id}(id=${supplier.id})}">Edit</a> |
+      <a th:href="@{/suppliers/delete/{id}(id=${supplier.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<div th:if="${errorMessage}" style="color: red; margin: 20px 0;">
+  <p th:text="${errorMessage}"></p>
+</div>
+<div th:if="${successMessage}" style="color: green; margin: 20px 0;">
+  <p th:text="${successMessage}"></p>
+</div>
+
+
+
+<div class="bottom-right-button">
+  <a href="/home">
+    <button type="button">Back to Home</button>
+  </a>
+</div>
+</body>
+</html>

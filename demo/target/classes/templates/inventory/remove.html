@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Remove Stock</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+      text-align: center;
+      margin-top: 50px;
+    }
+    h1 {
+      color: #4b0082;
+    }
+    form {
+      display: inline-block;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      width: 300px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input[type="number"],
+    input[type="text"] {
+      width: calc(100% - 16px);
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 2px solid #4b0082;
+      color: #4b0082;
+      background-color: transparent;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button:hover {
+      background-color: #4b0082;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<h1>Remove Stock for Product</h1>
+<form th:action="@{/inventory/remove/{productId}(productId=${product.id})}" method="post">
+  <label>Product: <span th:text="${product.name}"></span></label>
+  <label>Current Quantity on Hand: <span th:text="${product.quantityOnHand}"></span></label>
+  <label>Quantity to Sell: <input type="number" name="quantity" min="1" th:attr="max=${product.quantityOnHand}" required /></label>
+  <label>Supplied To: <input type="text" name="suppliedTo" required /></label>
+  <label>Selling Price: <input type="number" step="0.01" name="sellingPrice" required /></label>
+  <button type="submit">Sell Stock</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add Product</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      text-align: center;
+      margin-top: 50px;
+    }
+    h1 {
+      color: #4b0082;
+    }
+    form {
+      display: inline-block;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      width: 400px; /* Increased width */
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 7px; /* Increased padding */
+      margin-bottom: 10px;
+      border: 1px solid #ccc; /* Increased border */
+      border-radius: 4px;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: 2px solid #4b0082; /* Purple border */
+      color: #4b0082; /* Purple text color */
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Button hover effect */
+    .button:hover {
+      background-color: #4b0082;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<h1>Add New Product</h1>
+<form th:action="@{/products/add}" th:object="${product}" method="post">
+  <input type="text" th:field="*{name}" pattern="[A-Za-z\s]+" title="Please enter only alphabetic characters and spaces." />
+  <label>Description: <input type="text" th:field="*{description}" /></label>
+  <label>Quantity: <input type="number" th:field="*{quantityOnHand}" step="1" min="0"/></label>
+  <label>Price: <input type="number" th:field="*{price}" step="0.01" min="0"/></label>
+  <label>Supplier:
+    <select th:field="*{supplier.id}">
+      <option th:each="supplier : ${suppliers}" th:value="${supplier.id}" th:text="${supplier.name}"></option>
+    </select>
+  </label>
+  <button type="submit" class="button">Save</button>
+</form>
+</body>
+</html>

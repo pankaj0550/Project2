@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #4b0082;
+        }
+        form {
+            display: inline-block;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            width: 400px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        /* Button container styling */
+        .button-container {
+            margin-top: 20px;
+        }
+
+        /* Button styling */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: 2px solid #4b0082; /* Purple border */
+            color: #4b0082; /* Purple text color */
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Button hover effect */
+        .button:hover {
+            background-color: #4b0082;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>Edit Product</h1>
+<form th:action="@{/products/edit/{id}(id=${product.id})}" th:object="${product}" method="post">
+    <label>Name: <input type="text" th:field="*{name}" /></label>
+    <label>Description: <input type="text" th:field="*{description}" /></label>
+    <label>Quantity: <input type="number" th:field="*{quantityOnHand}" /></label>
+    <label>Price: <input type="number" th:field="*{price}" /></label>
+    <label>Supplier:
+        <select th:field="*{supplier.id}">
+            <option th:each="supplier : ${suppliers}" th:value="${supplier.id}" th:text="${supplier.name}"></option>
+        </select>
+    </label>
+    <button class="button" type="submit">Update</button>
+</form>
+</body>
+</html>

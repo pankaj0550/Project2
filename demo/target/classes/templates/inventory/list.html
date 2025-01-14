@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inventory Transactions List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            margin-top: 30px;
+        }
+        h1 {
+            color: #4b0082;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4b0082;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        a {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 15px;
+            color: #4b0082;
+            text-decoration: none;
+            border: 1px solid #4b0082;
+            border-radius: 4px;
+        }
+        a:hover {
+            background-color: #4b0082;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>Inventory Transactions List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Transaction Date</th>
+        <th>Transaction Type</th>
+        <th>Quantity on Hand</th>
+        <th>Supplied To </th>
+        <th>Selling Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="transaction : ${transactions}">
+        <td th:text="${transaction.product.name}">Product Name</td>
+        <td th:text="${transaction.quantity}">Quantity</td>
+        <td th:text="${transaction.transactionDate}">Transaction Date</td>
+        <td th:text="${transaction.type}">Transaction Type</td>
+        <td th:text="${transaction.quantityOnHand}">Quantity on Hand</td>
+        <td th:text="${transaction.suppliedTo}">Supplied To</td>
+        <td th:text="${transaction.sellingPrice}">Selling Price</td>
+
+
+    </tr>
+    </tbody>
+</table>
+<br/>
+<!--<a href="/products">Back to Transaction Options</a>-->
+<a href="/home">Back to Home </a>
+</body>
+</html>
